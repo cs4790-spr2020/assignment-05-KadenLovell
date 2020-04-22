@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using BlabberApp.DataStore.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BlabberApp.DataStore.Adapters;
 using BlabberApp.DataStore.Plugins;
@@ -40,6 +41,21 @@ namespace BlabberApp.DataStoreTest {
             //Assert
             Assert.AreEqual(_user.Id, actual.Id);
         }
+
+        [TestMethod]
+        public void TestUpdateUser() {
+            //Arrange
+            _user.RegisterDTTM = DateTime.Now;
+            _user.LastLoginDTTM = DateTime.Now;
+            //Act
+            _harness.Add(_user);
+            _user.ChangeEmail("newfoobar@example.com");
+            _harness.Update(_user);
+            User actual = _harness.GetById(_user.Id);
+            //Assert
+            Assert.AreNotEqual(_user.Email, actual.Email);
+        }
+
         [TestMethod]
         public void TestAddAndGetAll() {
             //Arrange
@@ -51,6 +67,18 @@ namespace BlabberApp.DataStoreTest {
             User actual = (User)users[0];
             //Assert
             Assert.AreEqual(_user.Id.ToString(), actual.Id.ToString());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(UserAdapterNotFoundException), "There is no row at position 0.")]
+        public void TestRemoveUser() {
+            //Arrange
+            _user.RegisterDTTM = DateTime.Now;
+            _user.LastLoginDTTM = DateTime.Now;
+            //Act
+            _harness.Add(_user);
+            _harness.Remove(_user);
+            var actual = _harness.GetById(_user.Id);
         }
     }
 }

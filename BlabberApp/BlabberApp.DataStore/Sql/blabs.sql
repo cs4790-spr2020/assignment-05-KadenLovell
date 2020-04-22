@@ -1,4 +1,4 @@
-SELECT * FROM `kadenlovell`.`blabs`;
-SELECT * FROM `kadenlovell`.`users`;
-TRUNCATE `kadenlovell`.`blabs`;
-TRUNCATE `kadenlovell`.`users`;
+SELECT * FROM `donbstringham`.`blabs`;
+SELECT * FROM `donbstringham`.`users`;
+TRUNCATE `donbstringham`.`blabs`;
+TRUNCATE `donbstringham`.`users`;

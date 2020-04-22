@@ -79,7 +79,6 @@ namespace BlabberApp.DataStore.Plugins {
                 MySqlDataAdapter daUser = new MySqlDataAdapter(sql, _dcUser); // To avoid SQL injection.
                 MySqlCommandBuilder cbUser = new MySqlCommandBuilder(daUser);
                 DataSet dsUser = new DataSet();
-
                 daUser.Fill(dsUser, "users");
 
                 DataRow row = dsUser.Tables[0].Rows[0];

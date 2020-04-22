@@ -9,12 +9,6 @@ namespace BlabberApp.Domain.Entities {
             this.Message = "";
             this.DTTM = DateTime.Now;
         }
-        public Blab(string Message) {
-            this.Id = Guid.NewGuid();
-            this.User = new User();
-            this.Message = Message;
-            this.DTTM = DateTime.Now;
-        }
         public Blab(User user) {
             this.Id = Guid.NewGuid();
             this.User = user;
@@ -31,9 +25,5 @@ namespace BlabberApp.Domain.Entities {
         public DateTime DTTM { get; set; }
         public string Message { get; set; }
         public User User { get; set; }
-        public bool IsValid() {
-            // Add code to validate class data.
-            return true;
-        }
     }
 }

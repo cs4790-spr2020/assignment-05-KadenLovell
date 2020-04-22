@@ -23,8 +23,12 @@ namespace BlabberApp.Client.Pages {
 
             try {
                 User user = _serviceUser.FindUser(email);
-                Blab blab = _serviceBlab.CreateBlab(message, user);
-                _serviceBlab.AddBlab(blab);
+                if (user == null) {
+                    // user didn't exist error
+                } else {
+                    Blab blab = _serviceBlab.CreateBlab(message, user);
+                    _serviceBlab.AddBlab(blab);
+                }
             } catch (Exception ex) {
                 throw new Exception("FeedModel::OnPost: " + ex.ToString());
             }

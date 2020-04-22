@@ -19,31 +19,29 @@ namespace BlabberApp.DomainTest.Entities {
         public void TestSetGetEmail_Fail00() {
             // Arrange
             User harness = new User();
-            var expected = "Foobar is invalid";
+
             // Act
             var ex = Assert.ThrowsException<FormatException>(() => harness.ChangeEmail("Foobar"));
             // Assert
-            Assert.AreEqual(expected, ex.Message.ToString());
+            Assert.AreEqual("Foobar is invalid", ex.Message.ToString());
         }
         [TestMethod]
         public void TestSetGetEmail_Fail01() {
             // Arrange
             User harness = new User();
-            var expected = "example.com is invalid";
             // Act
             var ex = Assert.ThrowsException<FormatException>(() => harness.ChangeEmail("example.com"));
             // Assert
-            Assert.AreEqual(expected, ex.Message.ToString());
+            Assert.AreEqual("example.com is invalid", ex.Message.ToString());
         }
         [TestMethod]
         public void TestSetGetEmail_Fail02() {
             // Arrange
             User harness = new User();
-            var expected = "foobar.example is invalid";
             // Act
             var ex = Assert.ThrowsException<FormatException>(() => harness.ChangeEmail("foobar.example"));
             // Assert
-            Assert.AreEqual(expected, ex.Message.ToString());
+            Assert.AreEqual("foobar.example is invalid", ex.Message.ToString());
         }
         [TestMethod]
         public void TestId() {
@@ -54,7 +52,6 @@ namespace BlabberApp.DomainTest.Entities {
             Guid actual = harness.Id;
             // Assert
             Assert.AreEqual(actual, expected);
-            Assert.AreEqual(true, harness.Id is Guid);
         }
     }
 }

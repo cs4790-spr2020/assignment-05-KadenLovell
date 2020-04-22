@@ -21,6 +21,30 @@ namespace BlabberApp.DomainTest.Entities {
         }
 
         [TestMethod]
+        public void TestChangeUser() {
+            // Arrange
+            var expected = new User {
+                Id = Guid.NewGuid(),
+            };
+            harness.User.Id = expected.Id;
+            // Act
+            string actual = harness.User.Id.ToString();
+            // Assert
+            Assert.AreEqual(expected.Id, expected.Id);
+        }
+
+        [TestMethod]
+        public void TestGetSetDateTime() {
+            // Arrange
+            var expected = DateTime.Now;
+            harness.DTTM = expected;
+            // Act
+            DateTime actual = harness.DTTM;
+            // Assert
+            Assert.AreEqual(actual, expected);
+        }
+
+        [TestMethod]
         public void TestId() {
             // Arrange
             Guid expected = harness.Id;
@@ -28,7 +52,6 @@ namespace BlabberApp.DomainTest.Entities {
             Guid actual = harness.Id;
             // Assert
             Assert.AreEqual(actual, expected);
-            Assert.AreEqual(true, harness.Id is Guid);
         }
 
         [TestMethod]
